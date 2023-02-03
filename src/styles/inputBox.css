@@ -1,0 +1,33 @@
+.input-box-container {
+    padding: 10px;
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.input-box {
+    width: 300px;
+    padding: 5px;
+    font-size: 25px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: goldenrod;
+}
+
+.input-box:focus{
+    background-color: antiquewhite;
+    outline: none;
+}
+
+.input-box-title {
+    margin: 0px;
+    color: #f36e26;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    margin-left: 1px;
+}

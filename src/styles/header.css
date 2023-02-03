@@ -1,0 +1,10 @@
+.headerContainer {
+    background-color: rgb(10, 10, 10);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+
+
+
+}

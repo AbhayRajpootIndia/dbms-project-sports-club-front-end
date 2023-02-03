@@ -1,0 +1,27 @@
+.primaryButtonContainer {
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f36e26;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 4px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.primaryButtonContainer:hover {
+    background-color: #f58041;
+}
+
+.primaryButtonContainer:active {
+    background-color: #9e4d21;
+}
+
+.primaryButtonText {
+    font-size: 18px;
+    color: black;
+}

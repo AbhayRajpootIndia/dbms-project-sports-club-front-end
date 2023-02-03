@@ -1,0 +1,20 @@
+.coach-list-container {
+    background-color: rgba(0, 0, 0, 0.647);
+}
+
+.coach-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    column-gap: 40px;
+    padding: 5px 40px;
+}
+
+.coach-card > p {
+    color:rgb(255, 94, 0);
+    font-size: 20px;
+    font-weight: 600;
+    width: 150px;
+    text-align: left;
+}
+
