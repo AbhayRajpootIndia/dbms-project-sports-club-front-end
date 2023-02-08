@@ -7,9 +7,9 @@ function TournamentCard(props) {
     
     return (
         <div className='coach-card'>
-            {/* <p style={{width: '50px'}}>
-                {tournament.id || '-'}
-            </p> */}
+            <p style={{width: '50px'}}>
+                {tournament.Id || '-'}
+            </p>
             <p style={{width: '300px'}}>
                 {tournament.tournament_name}
             </p> 
@@ -33,7 +33,7 @@ function TournamentCard(props) {
 export default function TournamentsList(props) {
 
     const attributes = {
-        id: 'ID', 
+        Id: 'ID', 
         tournament_name: 'TOURNAMENT NAME', 
         T_date: 'DATE', 
         venue: 'VENUE NAME', 

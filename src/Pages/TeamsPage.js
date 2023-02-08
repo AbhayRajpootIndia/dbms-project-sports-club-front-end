@@ -12,6 +12,7 @@ import Select from 'react-select';
 import TeamsList from '../components/Tables/TeamsList';
 import InputBox from '../components/UI/InputBox';
 import SecondaryButton from '../components/UI/SecondaryButton';
+import DropdownMenu from '../components/UI/DropDown';
 
 // helper functions
 import useWindowDimensions from "../customHooks/useWindowDimensions";
@@ -39,11 +40,19 @@ export default function TeamsPage(props) {
 
     const [teams, setTeams] = useState([]);
 
-    const [sport, setSport] = useState('');
+    const [sport, setSport] = useState({ value: '', label: 'Show All' });
+
+    const [sportOptions, setSportOptions] = useState([
+        { value: 'cricket', label: 'cricket' },
+        { value: 'football', label: 'football' },
+        { value: 'basketball', label: 'basketball' },
+        { value: 'badminton', label: 'badminton' },
+    ]);
 
 
     useEffect(() => {
         getTeams()
+        getSports()
     }, [])
 
     const defaultOption = options[0];
@@ -51,7 +60,7 @@ export default function TeamsPage(props) {
     function getTeams()  {
         console.log(sport);
 
-        const API_PATH = `http://localhost:3001/teams/${sport}`
+        const API_PATH = `http://localhost:3001/teams/${sport.value}`
 
         axios({
             method: 'get',
@@ -64,6 +73,34 @@ export default function TeamsPage(props) {
         .then(result => {
             console.log(result.data)
             setTeams(result.data);
+            
+        })
+        .catch(error => console.log(error));
+    }
+
+    function getSports()  {
+        console.log(sport);
+
+        const API_PATH = `http://localhost:3001/sports/`
+
+        axios({
+            method: 'get',
+            url: API_PATH,
+            headers: {
+                'content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+        .then(result => {
+            console.log('res sports')
+            console.log(result.data);
+            setSportOptions(result.data.map(sport => ({
+                label: sport.sport,
+                value: sport.sport
+            })));
+            setSportOptions(prev => {
+                return [{ value: '', label: 'Show All' }, ...prev]
+            })
             
         })
         .catch(error => console.log(error));
@@ -84,12 +121,12 @@ export default function TeamsPage(props) {
                         List of all  the teams
                     </p>
                     
-                    <InputBox 
+                    <DropdownMenu 
+                        options={sportOptions}
                         value={sport}
-                        onChange={(event) => setSport(event.target.value)}
-                        maxLength={20}
-                        title='Search by Sport'
-                        />                   
+                        setValue={setSport}
+                        title={"Search by Sport"}
+                        />                  
 
                     
                     <div style={{marginTop: '10px', marginBottom: '30px'}}>

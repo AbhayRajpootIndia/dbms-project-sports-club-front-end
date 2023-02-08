@@ -14,13 +14,13 @@ function EquipmentCard(props) {
                 {equipment.E_type}
             </p> 
             <p style={{width: '150px'}}>
-                {equipment.Player_id}
+                {equipment.Player_id || '-'}
             </p>
             <p>
-                {equipment.date_out.slice(0, 10)}
+                {equipment.date_out ? equipment.date_out.slice(0, 10) : '-'}
             </p>
             <p>
-                {equipment.due_date.slice(0, 10)}
+                {equipment.due_date ? equipment.due_date.slice(0, 10) : '-'}
             </p>                   
         </div>
     )

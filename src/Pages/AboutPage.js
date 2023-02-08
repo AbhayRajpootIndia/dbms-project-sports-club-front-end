@@ -3,26 +3,12 @@
 import '../styles/page.css'
 import '../styles/coachesPage.css'  
 
-// components
-import InputBox from '../components/UI/InputBox';
-import SecondaryButton from '../components/UI/SecondaryButton';
-
 // helper functions
 import useWindowDimensions from "../customHooks/useWindowDimensions";
 
-import axios from 'axios';
-
-// navigation
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
-
-// tables
-import CourtList from '../components/Tables/CourtList';
-import EquipmentsList from '../components/Tables/EquipmentsList';
 
 export default function AboutPage(props) {
 
-    const navigate = useNavigate();
 
     const { height, width } = useWindowDimensions();
 

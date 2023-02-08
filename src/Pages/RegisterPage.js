@@ -117,7 +117,7 @@ export default function RegisterPage(props) {
 
     function handleProceed() {
         const newPlayer = {
-            "Player_id": (playerMaxId + 1).toString(),
+            "Player_id": 'NULL',
             "P_name": name,
             "sport": sport.value,
             "address": address,

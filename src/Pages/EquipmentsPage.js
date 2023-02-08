@@ -114,6 +114,17 @@ export default function EquipmentsPage(props) {
                             />
                     </div>
 
+                    <div style={{marginTop: '0px', marginBottom: '20px', display: 'flex', columnGap: '10px'}}>
+                        <SecondaryButton 
+                            buttonText={"Borrow"}
+                            handlePress={() => navigate('/sports-club/borrow')}
+                            />
+                            <SecondaryButton 
+                            buttonText={"Return"}
+                            handlePress={() => navigate('/sports-club/return')}
+                            />
+                    </div>
+
                     <EquipmentsList equipments={equipments} />
 
                 </div>

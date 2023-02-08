@@ -12,6 +12,8 @@ import EquipmentsPage from './Pages/EquipmentsPage';
 import TournamentsPage from './Pages/TournamentsPage';
 import AboutPage from './Pages/AboutPage';
 import RegisterPage from './Pages/RegisterPage';
+import BorrowPage from './Pages/BorrowPage';
+import ReturnPage from './Pages/ReturnPage';
 
 // Header
 import Header from './components/Header/Header';
@@ -43,7 +45,9 @@ root.render(
           <Route path="sports-club/tournaments" element={<TournamentsPage />} />   
           <Route path="sports-club/about" element={<AboutPage />} />      
           <Route path="sports-club/register" element={<RegisterPage />} /> 
-                 
+          <Route path="sports-club/borrow" element={<BorrowPage />} /> 
+          <Route path="sports-club/return" element={<ReturnPage />} /> 
+                      
         </Routes>
     </BrowserRouter>
   </React.StrictMode>

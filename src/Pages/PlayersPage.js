@@ -26,7 +26,14 @@ export default function CoachesPage(props) {
 
     const [coaches, setCoaches] = useState([]);
 
-    const [sport, setSport] = useState('');
+    const [sport, setSport] = useState({ value: '', label: 'Show All' });
+
+    const [sportOptions, setSportOptions] = useState([
+        { value: 'cricket', label: 'cricket' },
+        { value: 'football', label: 'football' },
+        { value: 'basketball', label: 'basketball' },
+        { value: 'badminton', label: 'badminton' },
+    ]);
 
     const [team, setTeam] = useState({value: '', label: 'Show All'});
 
@@ -41,7 +48,12 @@ export default function CoachesPage(props) {
     useEffect(() => {
         getTeams() 
         getPlayers()
+        getSports()
     }, [])
+
+    useEffect(() => {
+        getTeams();
+    }, [sport])
 
     function getPlayers()  {
         console.log(sport);
@@ -49,10 +61,10 @@ export default function CoachesPage(props) {
         let API_PATH = `http://localhost:3001/players/`
 
         if (team.value && sport) {
-            API_PATH = `http://localhost:3001/players/${sport}/${team.value}`
+            API_PATH = `http://localhost:3001/players/${sport.value}/${team.value}`
         }
         else if (sport) {
-            API_PATH = `http://localhost:3001/players/${sport}`
+            API_PATH = `http://localhost:3001/players/${sport.value}`
         }
 
         axios({
@@ -74,7 +86,7 @@ export default function CoachesPage(props) {
     function getTeams()  {
         console.log(sport);
 
-        const API_PATH = `http://localhost:3001/teams/`
+        const API_PATH = `http://localhost:3001/teams/${sport.value}`
 
         axios({
             method: 'get',
@@ -99,6 +111,36 @@ export default function CoachesPage(props) {
         .catch(error => console.log(error));
     }
 
+    function getSports()  {
+        console.log(sport);
+
+        const API_PATH = `http://localhost:3001/sports/`
+
+        axios({
+            method: 'get',
+            url: API_PATH,
+            headers: {
+                'content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+        .then(result => {
+            console.log('res sports')
+            console.log(result.data);
+            setSportOptions(result.data.map(sport => ({
+                label: sport.sport,
+                value: sport.sport
+            })));
+            setSportOptions(prev => {
+                return [{ value: '', label: 'Show All' }, ...prev]
+            })
+            
+        })
+        .catch(error => console.log(error));
+    }
+
+    
+
 
     return (
         <>
@@ -109,11 +151,11 @@ export default function CoachesPage(props) {
                         List of all the players
                     </p>
                     
-                    <InputBox 
+                    <DropdownMenu 
+                        options={sportOptions}
                         value={sport}
-                        onChange={(event) => setSport(event.target.value)}
-                        maxLength={20}
-                        title="Search by Sport"
+                        setValue={setSport}
+                        title={"Search by Sport"}
                         />
                     
                     <DropdownMenu 
